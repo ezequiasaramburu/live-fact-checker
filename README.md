@@ -35,7 +35,7 @@ A Chrome extension that fact-checks YouTube videos and live streams **in real ti
 2. **Clone this repo**
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/live-fact-checker.git
+   git clone https://github.com/ezequiasaramburu/live-fact-checker.git
    ```
 
 3. **Load in Chrome**
@@ -74,14 +74,20 @@ Click **Export** to download a self-contained HTML report with all claims, verdi
 
 ```
 live-fact-checker/
-├── manifest.json          # Manifest V3 config
-├── background.js          # Service worker: message routing, transcript extraction
-├── content.js             # Content script: YouTube caption capture (hybrid debounce+window)
-├── sidepanel.html         # Side panel UI
-├── sidepanel.css          # Dark theme styles
-├── sidepanel.js           # Main app logic: state, API calls, rate limiter, i18n
-├── whisper-sandbox.html   # Sandboxed iframe for local Whisper transcription
-└── icons/                 # Extension icons (16, 48, 128px)
+├── manifest.json                 # Manifest V3 config
+├── background.js                 # Service worker: message routing, transcript extraction
+├── content.js                    # Content script: YouTube caption capture (hybrid debounce+window)
+├── sidepanel.html                # Side panel UI
+├── sidepanel.css                 # Dark theme styles
+├── sidepanel.core.js             # Namespace, shared state, DOM refs, i18n, utilities
+├── sidepanel.settings-context.js # Settings panel + active tab/page context
+├── sidepanel.modes.js            # YouTube CC, tab audio + Whisper, microphone modes
+├── sidepanel.transcript-ui.js    # UI wiring, transcript rendering, tooltips, modal
+├── sidepanel.gemini-factcheck.js # Gemini API, rate limiting, claim pipeline
+├── sidepanel.messaging-export.js # Runtime messaging + HTML report export
+├── sidepanel.main.js             # Init + high-level control flow and scheduling
+├── whisper-sandbox.html          # Sandboxed iframe for local Whisper transcription
+└── icons/                        # Extension icons (16, 48, 128px)
 ```
 
 ### Key Technical Decisions
@@ -128,7 +134,3 @@ Powered by:
 - [Gemini 2.0 Flash](https://ai.google.dev/) — claim identification and grounded verification
 - [Whisper](https://huggingface.co/Xenova/whisper-tiny) via [transformers.js](https://github.com/xenova/transformers.js) — local audio transcription
 - [Chrome Side Panel API](https://developer.chrome.com/docs/extensions/reference/api/sidePanel)
-
-## License
-
-MIT — see [LICENSE](LICENSE)
