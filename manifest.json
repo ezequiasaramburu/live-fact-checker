@@ -1,5 +1,5 @@
 {
-  "manifest_version": 1,
+  "manifest_version": 3,
   "name": "Live Fact Checker",
   "version": "0.0.1",
   "description": "Real-time AI fact-checking for YouTube videos and live streams — Gemini + Whisper",
