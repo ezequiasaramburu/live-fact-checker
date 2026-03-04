@@ -33,6 +33,7 @@ A Chrome extension that fact-checks YouTube videos and live streams **in real ti
    - The free tier gives you 15 requests/minute and 1,500 requests/day — plenty for real-time checking
 
 2. **Clone this repo**
+
    ```bash
    git clone https://github.com/YOUR_USERNAME/live-fact-checker.git
    ```
@@ -51,12 +52,14 @@ A Chrome extension that fact-checks YouTube videos and live streams **in real ti
 ## Usage
 
 ### Live Fact-Checking
+
 1. Open a YouTube video or live stream
 2. Open the extension side panel (click the extension icon)
 3. Press **Start Fact-Checking**
 4. Watch as claims are identified and verified in real time
 
 ### Batch Video Analysis
+
 1. Open any YouTube video (non-live)
 2. Click the ⚡ **Analyze Video** button
 3. The extension fetches the full transcript and processes it in two phases:
@@ -64,6 +67,7 @@ A Chrome extension that fact-checks YouTube videos and live streams **in real ti
    - Phase 2 (40–100%): Verifies each claim one by one
 
 ### Export Report
+
 Click **Export** to download a self-contained HTML report with all claims, verdicts, sources, and the full transcript.
 
 ## Architecture
@@ -90,19 +94,19 @@ live-fact-checker/
 
 ## Configuration
 
-| Setting | Options | Default |
-|---|---|---|
-| Check Interval | ~5s, ~10s, ~20s | ~10s |
-| Language | English, Español | English |
+| Setting            | Options                                     | Default    |
+| ------------------ | ------------------------------------------- | ---------- |
+| Check Interval     | ~5s, ~10s, ~20s                             | ~10s       |
+| Language           | English, Español                            | English    |
 | Transcription Mode | YouTube CC, Tab Audio (Whisper), Microphone | YouTube CC |
 
 ## API Limits (Free Tier)
 
-| Limit | Value |
-|---|---|
-| Requests per minute | 15 RPM |
-| Requests per day | 1,500 RPD |
-| Tokens per minute | 1,000,000 TPM |
+| Limit               | Value         |
+| ------------------- | ------------- |
+| Requests per minute | 15 RPM        |
+| Requests per day    | 1,500 RPD     |
+| Tokens per minute   | 1,000,000 TPM |
 
 The extension stays well within these limits. For heavier use, upgrade to [Gemini's paid tier](https://ai.google.dev/pricing).
 
@@ -117,9 +121,10 @@ Contributions are welcome! Some ideas:
 
 ## Credits
 
-Built by [@alandaitch](https://twitter.com/alandaitch)
+Built by [@ezequias](https://twitter.com/ezequias_dev)
 
 Powered by:
+
 - [Gemini 2.0 Flash](https://ai.google.dev/) — claim identification and grounded verification
 - [Whisper](https://huggingface.co/Xenova/whisper-tiny) via [transformers.js](https://github.com/xenova/transformers.js) — local audio transcription
 - [Chrome Side Panel API](https://developer.chrome.com/docs/extensions/reference/api/sidePanel)
