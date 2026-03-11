@@ -19,7 +19,7 @@ function ensureContentScriptAndSend(tabId, msg, sendResponse, retries = 2) {
         }).then(() => {
           // Wait a beat for the script to initialize
           setTimeout(() => {
-            ensureContentScriptAndSend(tabId, msg, sendResponse, retries - 1);
+            ensureContentScriptAndSend(tabId, msg, sendResponse, retries);
           }, 800);
         }).catch((err) => {
           sendResponse({ success: false, error: 'Injection failed: ' + err.message });
