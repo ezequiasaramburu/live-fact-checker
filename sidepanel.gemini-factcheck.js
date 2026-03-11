@@ -20,16 +20,18 @@
   // ==========================================================
   // GEMINI API — budget-based rate limiter
   // ==========================================================
-  // Gemini 2.0 Flash free tier limits:
-  //   - 15 requests per minute (RPM)
-  //   - 1,000,000 tokens per minute (TPM)
-  //   - 1,500 requests per day (RPD)
+  // Gemini 2.0 Flash *free tier* limits (per Google AI Studio for this project):
+  //   - 5 requests per minute (RPM)
+  //   - 250,000 tokens per minute (TPM)
+  //   - 20 requests per day (RPD)
   // We track a sliding window of request timestamps to NEVER exceed these.
   // ==========================================================
   const GEMINI = 'https://generativelanguage.googleapis.com/v1beta/models';
 
-  const RPM_LIMIT = 14;           // stay 1 under the 15 RPM hard limit
-  const RPD_LIMIT = 1400;         // stay under the 1500 RPD hard limit
+  // NOTE: We intentionally stay slightly under each published limit so brief bursts
+  // or clock skew don't trigger 429s. If you upgrade your quota, adjust these.
+  const RPM_LIMIT = 4;            // stay under the 5 RPM hard limit
+  const RPD_LIMIT = 18;           // stay under the 20 RPD hard limit
   const requestLog = [];          // timestamps of all API calls
   let dailyRequestCount = 0;
   let dailyResetTime = Date.now() + 86400000;
